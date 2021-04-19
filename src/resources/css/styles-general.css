@@ -1,0 +1,11 @@
+@font-face {
+    src:url('../fonts/Poppins-Regular.ttf');
+}
+.radius-45percent{
+    -fx-background-radius: 45;
+}.radius-100percent{
+    -fx-background-radius: 100;
+}.font-family{
+     -fx-font-family: "Poppins Regular";
+    -fx-font-size: 13;
+ }

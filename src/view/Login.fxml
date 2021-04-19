@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+
+<FlowPane alignment="center" hgap="10" prefHeight="640.0" prefWidth="760.0" styleClass="background-root" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="450.0">
+      <effect>
+         <DropShadow color="#27282c" offsetX="-5.0" offsetY="-5.0"/>
+      </effect>
+      <styleClass>
+         <String fx:value="background-root"/>
+         <String fx:value="dropshadow-north"/>
+         <String fx:value="radius-45percent"/>
+      </styleClass>
+      <VBox prefHeight="600.0" prefWidth="450.0">
+         <styleClass>
+            <String fx:value="background-root"/>
+            <String fx:value="radius-45percent"/>
+            <String fx:value="dropshadow-south"/>
+         </styleClass>
+         <FlowPane alignment="CENTER" columnHalignment="CENTER" nodeOrientation="LEFT_TO_RIGHT"
+                   orientation="VERTICAL" prefHeight="215.0" prefWidth="450.0">
+            <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="170.0" maxWidth="170.0"
+                      prefHeight="170.0" prefWidth="170.0" prefWrapLength="34.0">
+               <styleClass>
+                  <String fx:value="background-root"/>
+                  <String fx:value="dropshadow-north"/>
+                  <String fx:value="radius-100percent"/>
+               </styleClass>
+               <FlowPane alignment="CENTER" prefHeight="170.0" prefWidth="170.0">
+                  <styleClass>
+                     <String fx:value="background-root"/>
+                     <String fx:value="radius-100percent"/>
+                     <String fx:value="dropshadow-south"/>
+                  </styleClass>
+                  <ImageView fitHeight="170.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../resources/images/login/logo.png"/>
+                  </ImageView>
+               </FlowPane>
+            </FlowPane>
+            <Label text="Centro de soluciones técnicas para su computadora ">
+               <styleClass>
+                  <String fx:value="font-family"/>
+                  <String fx:value="text-fill"/>
+               </styleClass>
+            </Label>
+         </FlowPane>
+      </VBox>
+   </FlowPane>
+   <stylesheets>
+      <URL value="@../resources/css/styles-general.css" />
+      <URL value="@../resources/css/styles-dark.css" />
+   </stylesheets>
+</FlowPane>
