@@ -1,12 +1,50 @@
 .background-root {
     -fx-background-color: #243441;
 }
-.dropshadow-north{
-    -fx-effect: dropshadow(three-pass-box, #4F5D67, 21, 0.0, -7, -7);
+
+.dropshadow-light {
+    -fx-effect: dropshadow(three-pass-box, #4F5D67, 15, 0.0, -7, -7);
 }
-.dropshadow-south{
-    -fx-effect: dropshadow(three-pass-box, #0C1116, 21, 0.0, 7, 7);
+
+.dropshadow-shadow{
+    -fx-effect: dropshadow(three-pass-box, #0C1116, 15, 0.0, 7, 7);
 }
-.text-fill{
+
+.innershadow-shadow-input {
+    -fx-effect: innershadow(three-pass-box, #0C1116, 10, 0.0, 2, 2);
+}
+
+.innershadow-light-input{
+    -fx-effect: innershadow(three-pass-box, #4F5D67, 10, 0.0, -2, -2);
+}
+
+.dropshadow-shadow-button{
+    -fx-effect: dropshadow(three-pass-box, #0C1116, 12, 0.0, 3, 3);
+}
+
+.dropshadow-light-button{
+    -fx-effect: dropshadow(three-pass-box, #4F5D67, 12, 0.0, -3, -3);
+}
+
+.text-fill {
+    -fx-text-fill: #ffffff;
+}
+.input-style{
+    -fx-prompt-text-fill: #707070;
+    -fx-text-fill:#ffffff;
+}
+.icon-fill{
+    -fx-fill: #ffffff;
+}
+.icon-effect{
+    -fx-effect: dropshadow(three-pass-box, #ffffff, 12, 0.0, 0, 0);
+}
+.toggle-button-style:selected> .icon-fill{
+    -fx-effect: dropshadow(three-pass-box, #ffffff, 12, 0.0, 0, 0);
+}
+.button-footer-style{
+    -fx-text-fill:  #707070;
+}
+.button-footer-style:hover{
     -fx-text-fill: #ffffff;
 }
