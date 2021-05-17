@@ -1,48 +1,97 @@
+* {
+    -fx-main:  #e1e6ec;
+    -fx-light: #ffffff;
+    -fx-shadow: #bac1d3;
+    -fx-text: #66727C;
+    -fx-button: #39EE70;
+    -fx-prompt: #acacac;
+}
+
 .background-root {
-    -fx-background-color: #e1e6ec;
+    -fx-background-color: -fx-main;
 }
 
 .dropshadow-light {
-    -fx-effect: dropshadow(three-pass-box, #ffffff, 21, 0.0, -7, -7);
+    -fx-effect: dropshadow(three-pass-box, -fx-light, 15, 0.0, -7, -7);
 }
 
 .dropshadow-shadow {
-    -fx-effect: dropshadow(three-pass-box, #bac1d3, 21, 0.0, 7, 7);
-}
-.innershadow-shadow-input {
-    -fx-effect: innershadow(three-pass-box, #bac1d3, 10, 0.0, 4, 4);
+    -fx-effect: dropshadow(three-pass-box, -fx-shadow, 15, 0.0, 7, 7);
 }
 
-.innershadow-light-input{
-    -fx-effect: innershadow(three-pass-box, #ffffff, 10, 0.0, -4, -4);
+.innershadow-shadow-text-area {
+    -fx-effect: innershadow(three-pass-box, -fx-shadow, 5, 0.0, 1, 1);
 }
-.dropshadow-shadow-button{
-    -fx-effect: dropshadow(three-pass-box, #bac1d3, 12, 0.0, 3, 3);
+
+.innershadow-light-tex-area {
+    -fx-effect: innershadow(three-pass-box, -fx-light, 5, 0.0, -1, -1);
+}
+
+.innershadow-shadow-input {
+    -fx-effect: innershadow(three-pass-box,-fx-shadow, 10, 0.0, 2, 2);
+}
+
+.innershadow-light-input {
+    -fx-effect: innershadow(three-pass-box, -fx-light, 10, 0.0, -2, -2);
+}
+
+.dropshadow-shadow-button {
+    -fx-effect: dropshadow(three-pass-box, -fx-shadow, 12, 0.0, 3, 3);
 }
 
 .dropshadow-light-button {
-    -fx-effect: dropshadow(three-pass-box, #ffffff, 12, 0.0, -3, -3);
+    -fx-effect: dropshadow(three-pass-box, -fx-light, 12, 0.0, -3, -3);
 }
+
 .text-fill {
-    -fx-text-fill: #66727C;
+    -fx-text-fill: -fx-text;
 }
-.input-style{
-    -fx-prompt-text-fill: #acacac;
-    -fx-text-fill:#66727C;
+
+.background-button {
+    -fx-background-color: -fx-button;
 }
-.icon-fill{
-    -fx-fill: #8690A3;
+
+.text-fill-button {
+    -fx-text-fill: -fx-main;
 }
-.icon-effect{
-    -fx-effect: dropshadow(three-pass-box, #ffffff, 12, 0.0, 0, 0);
+
+.input-style {
+    -fx-prompt-text-fill: -fx-prompt;
+    -fx-text-fill: -fx-text;
 }
-.toggle-button-style:selected> .icon-fill{
-    -fx-fill: #111111;
-    -fx-effect: dropshadow(three-pass-box, #111111, 5, 0.0, 0, 0);
+
+.icon-fill {
+    -fx-fill: -fx-prompt;
 }
-.button-footer-style{
-    -fx-text-fill: #acacac;
+
+.icon-fill-dialog {
+    -fx-fill: -fx-main;
 }
-.button-footer-style:hover{
-    -fx-text-fill: #66727C;
+
+.toggle-button-style:selected > .icon-fill {
+    -fx-fill: -fx-text;
+    -fx-effect: dropshadow(three-pass-box, -fx-text, 12, 0.0, 0, 0);
+}
+
+.button-footer-style {
+    -fx-text-fill: -fx-prompt;
+}
+
+.button-footer-style:hover {
+    -fx-text-fill: -fx-text;
+}
+
+/*root*/
+
+.text-area .scroll-pane {
+    -fx-background-color: -fx-main;
+}
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-radius: 2.0em;
+    -fx-effect: dropshadow(three-pass-box, -fx-light, 5, 0.0, -2, -2);
+    -fx-border-color: -fx-shadow;
+    -fx-border-style: hidden solid solid hidden;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2.0em;
 }

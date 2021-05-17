@@ -16,10 +16,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.shape.SVGPath?>
 
-<FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="10" minHeight="600.0" minWidth="450.0" prefHeight="680.0" prefWidth="1100.0" styleClass="background-root" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<FlowPane fx:id="flowPaneRoot" alignment="CENTER" columnHalignment="CENTER" hgap="10" minHeight="600.0" minWidth="450.0" prefHeight="680.0" prefWidth="1100.0" styleClass="background-root" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogInController">
    <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="450.0">
       <styleClass>
          <String fx:value="background-root" />
@@ -82,10 +81,9 @@
                   </FlowPane.margin>
                   <styleClass>
                      <String fx:value="icon-fill" />
-                     <String fx:value="icon-effect" />
                   </styleClass>
                </SVGPath>
-               <TextField maxHeight="30.0" maxWidth="340.0" prefHeight="30.0" prefWidth="340.0" promptText="Usuario">
+               <TextField fx:id="textFieldUserName" maxHeight="30.0" maxWidth="340.0" prefHeight="30.0" prefWidth="340.0" promptText="Usuario">
                   <styleClass>
                      <String fx:value="background-transparent" />
                      <String fx:value="input-style" />
@@ -115,24 +113,23 @@
                   </FlowPane.margin>
                   <styleClass>
                      <String fx:value="icon-fill" />
-                     <String fx:value="icon-effect" />
                   </styleClass>
                </SVGPath>
-               <TextField layoutX="25.0" layoutY="9.0" maxHeight="33.0" maxWidth="323.0" prefHeight="33.0" prefWidth="323.0" promptText="Contraseña" visible="false">
+               <TextField fx:id="textFieldPassword2" layoutX="25.0" layoutY="9.0" maxHeight="33.0" maxWidth="323.0" onKeyReleased="#syncUpPassword" prefHeight="33.0" prefWidth="323.0" promptText="Contraseña" visible="false">
                   <styleClass>
                      <String fx:value="background-transparent" />
                      <String fx:value="input-style" />
                      <String fx:value="font-family15" />
                   </styleClass>
                </TextField>
-               <PasswordField layoutX="25.0" layoutY="9.0" prefHeight="33.0" prefWidth="323.0" promptText="Contraseña">
+               <PasswordField fx:id="textFieldPassword1" layoutX="25.0" layoutY="9.0" onKeyReleased="#syncUpPassword" prefHeight="33.0" prefWidth="323.0" promptText="Contraseña">
                   <styleClass>
                      <String fx:value="background-transparent" />
                      <String fx:value="input-style" />
                      <String fx:value="font-family15" />
                   </styleClass>
                </PasswordField>
-               <ToggleButton layoutX="348.0" layoutY="18.0" maxHeight="14.0" maxWidth="24.0" minHeight="14.0" minWidth="24.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="33.0">
+               <ToggleButton fx:id="buttonShowPassword" layoutX="348.0" layoutY="18.0" maxHeight="14.0" maxWidth="24.0" minHeight="14.0" minWidth="24.0" mnemonicParsing="false" onAction="#showPasswordAction" prefHeight="34.0" prefWidth="33.0">
                   <graphic>
                      <SVGPath content="M18.9375 12.84375C8.921875 15.546875 1.613281 23.921875 1.25 24.34375C0.929688 24.71875 0.929688 25.28125 1.25 25.65625C1.683594 26.160156 11.988281 38 25 38C38.011719 38 48.316406 26.160156 48.75 25.65625C49.070313 25.28125 49.070313 24.71875 48.75 24.34375C48.386719 23.921875 41.078125 15.550781 31.0625 12.84375C34.027344 14.8125 36 18.171875 36 22C35.996094 28.074219 31.074219 33 25 33C18.925781 33 14.003906 28.074219 14 22C14 18.171875 15.972656 14.8125 18.9375 12.84375 Z M 25 17C22.238281 17 20 19.238281 20 22C20 24.761719 22.238281 27 25 27C27.761719 27 30 24.761719 30 22C30 19.238281 27.761719 17 25 17Z" scaleX="0.5" scaleY="0.5" styleClass="icon-fill" />
                   </graphic>
@@ -152,27 +149,21 @@
             <VBox.margin>
                <Insets top="40.0" />
             </VBox.margin>
-            <AnchorPane prefHeight="50.0" prefWidth="380.0">
+            <Button mnemonicParsing="false" onAction="#singInAction" prefHeight="50.0" prefWidth="380.0" text="ACCEDER">
                <styleClass>
                   <String fx:value="radius-100percent" />
+                  <String fx:value="font-family15-Medium" />
+                  <String fx:value="text-fill-button" />
+                  <String fx:value="background-button" />
                   <String fx:value="dropshadow-shadow-button" />
-                  <String fx:value="background-root" />
                </styleClass>
-               <Rectangle arcHeight="50.0" arcWidth="50.0" height="50.0" strokeType="INSIDE" styleClass="fill-button-left" width="380.0" />
-               <Rectangle fx:id="singUpFill" arcHeight="50.0" arcWidth="50.0" height="50.0" strokeType="INSIDE" styleClass="fill-button-right" width="380.0" />
-               <Label alignment="CENTER" contentDisplay="CENTER" onMouseEntered="#transitionEntered" onMouseExited="#transitionExited" prefHeight="50.0" prefWidth="380.0" text="Sing In">
-                  <styleClass>
-                     <String fx:value="text-fill-button" />
-                     <String fx:value="font-family18" />
-                  </styleClass>
-               </Label>
-            </AnchorPane>
+            </Button>
          </AnchorPane>
          <HBox alignment="CENTER" prefHeight="36.0" prefWidth="450.0">
             <VBox.margin>
                <Insets top="20.0" />
             </VBox.margin>
-            <Button mnemonicParsing="false" text="¿Has olvidado tu contraseña?">
+            <Button mnemonicParsing="false" onAction="#forgotPasswordAction" text="¿Has olvidado tu contraseña?">
                <styleClass>
                   <String fx:value="background-root" />
                   <String fx:value="font-family13" />
