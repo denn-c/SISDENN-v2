@@ -17,8 +17,8 @@ public class ChangeScene {
             Stage stage = (Stage) button.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (IOException ignored) {
+
         }
     }
 }

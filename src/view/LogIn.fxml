@@ -157,7 +157,7 @@
             <VBox.margin>
                <Insets top="40.0" />
             </VBox.margin>
-            <Button mnemonicParsing="false" onAction="#singInAction" prefHeight="50.0" prefWidth="380.0" text="ACCEDER">
+            <Button mnemonicParsing="false" onAction="#logInAction" prefHeight="50.0" prefWidth="380.0" text="ACCEDER">
                <styleClass>
                   <String fx:value="radius-100percent" />
                   <String fx:value="font-family15-Medium" />

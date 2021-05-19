@@ -11,7 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import model.ChangeScene;
-import model.Login;
+import model.LogIn;
 import model.ShowPassword;
 import model.Users;
 
@@ -42,10 +42,26 @@ public class LogInController implements Initializable {
     @FXML
     private Button buttonSignIn;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        flowPaneRootS = flowPaneRoot;
+    }
 
     @FXML
-    void singInAction() {
-        Login login = new Login();
+    void showPasswordAction() {
+        ShowPassword showPassword = new ShowPassword(textFieldPassword1, textFieldPassword2, buttonShowPassword);
+        showPassword.show();
+    }
+
+    @FXML
+    void syncUpPassword(KeyEvent event) {
+        ShowPassword showPassword = new ShowPassword(textFieldPassword1, textFieldPassword2, event);
+        showPassword.syncUpPassword();
+    }
+
+    @FXML
+    void logInAction() {
+        LogIn login = new LogIn();
         Users users = new Users();
 
         users.setUserName(textFieldUserName.getText());
@@ -62,15 +78,8 @@ public class LogInController implements Initializable {
     }
 
     @FXML
-    void showPasswordAction() {
-        ShowPassword showPassword = new ShowPassword(textFieldPassword1, textFieldPassword2, buttonShowPassword);
-        showPassword.show();
-    }
-
-    @FXML
-    void syncUpPassword(KeyEvent event) {
-        ShowPassword showPassword = new ShowPassword(textFieldPassword1, textFieldPassword2, event);
-        showPassword.syncUpPassword();
+    void signInAction() {
+        new ChangeScene(getClass().getResource("../view/SignIn.fxml"),buttonSignIn);
     }
 
     @FXML
@@ -80,15 +89,11 @@ public class LogInController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (IOException ignored) {
+
         }
     }
 
-    @FXML
-    void signInAction() {
-        new ChangeScene(getClass().getResource("../view/SignIn.fxml"),buttonSignIn);
-    }
 
     public static void addBlur() {
         GaussianBlur blurEffect = new GaussianBlur(20);
@@ -109,10 +114,5 @@ public class LogInController implements Initializable {
         flowPaneRootS.getStylesheets().clear();
         flowPaneRootS.getStylesheets().add("/resources/css/styles-dark.css");
         flowPaneRootS.getStylesheets().add("/resources/css/styles-general.css");
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        flowPaneRootS = flowPaneRoot;
     }
 }

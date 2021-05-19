@@ -1,20 +1,20 @@
 package model;
 
+import controller.Dialog;
+
 import java.sql.*;
 
-public class Login {
+public class LogIn {
     DataBaseConnection dataBaseConnection = new DataBaseConnection();
     Connection connection = dataBaseConnection.getConnection();
 
 
     public int checkLogin(Users users) {
-        String sql = "SELECT idusuario, idtipo_usuario, nombres_apellidos, correo, usuario, contrasenia FROM usuario where usuario = ?";
+        String sql = "SELECT idUse, idUserType, nameLastName, email, userName, password FROM user where userName = ?";
 
         if (connection == null) return 0;
         else {
             try {
-                Statement statement = connection.createStatement();
-                statement.setQueryTimeout(30);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, users.getUserName());
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -29,9 +29,9 @@ public class Login {
                 }
                 return -1;
             } catch (SQLException e) {
-                return -1;
+                Dialog.error("Error de consulta","Ocurrió un error al ejecutar la consulta a la base de datos",e.getMessage(),Dialog.DATABASE_NOT_CONNECTED());
+                return 0;
             }
-
         }
     }
 }

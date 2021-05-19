@@ -112,9 +112,9 @@ public class Dialog implements Initializable {
     private static void loadDialog() {
         try {
 
-            Stage primaryStage = (Stage) LogInController.flowPaneRootS.getScene().getWindow();
-            double centerXPosition = (primaryStage.getX() + (primaryStage.getWidth()) / 2);
-            double centerYPosition = (primaryStage.getY() + (primaryStage.getHeight()) / 2);
+//            Stage primaryStage = (Stage) LogInController.flowPaneRootS.getScene().getWindow();
+//            double centerXPosition = (primaryStage.getX() + (primaryStage.getWidth()) / 2);
+//            double centerYPosition = (primaryStage.getY() + (primaryStage.getHeight()) / 2);
 
             URL location = Dialog.class.getResource("../view/Dialog.fxml");
             Parent root = FXMLLoader.load(Objects.requireNonNull(location));
@@ -124,8 +124,8 @@ public class Dialog implements Initializable {
             scene.setFill(Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setX(centerXPosition - 210);
-            stage.setY(centerYPosition - 150);
+//            stage.setX(centerXPosition - 210);
+//            stage.setY(centerYPosition - 150);
             stage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());

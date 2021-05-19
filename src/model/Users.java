@@ -7,7 +7,7 @@ public class Users {
     private String email;
     private String user_name;
     private String password;
-    private int dni;
+    private int phone;
 
     public int getId() {
         return id;
@@ -57,11 +57,11 @@ public class Users {
         this.password = password;
     }
 
-    public int getDni() {
-        return dni;
+    public int getPhone() {
+        return phone;
     }
 
-    public void setDni(int dni) {
-        this.dni = dni;
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
 }
