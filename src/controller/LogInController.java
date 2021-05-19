@@ -5,13 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import model.ChangeScene;
 import model.Login;
 import model.ShowPassword;
 import model.Users;
@@ -23,7 +22,7 @@ import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
 
-    private static FlowPane flowPaneRootS;
+    public static FlowPane flowPaneRootS;
 
     @FXML
     private FlowPane flowPaneRoot;
@@ -41,6 +40,10 @@ public class LogInController implements Initializable {
     private PasswordField textFieldPassword1;
 
     @FXML
+    private Button buttonSignIn;
+
+
+    @FXML
     void singInAction() {
         Login login = new Login();
         Users users = new Users();
@@ -49,6 +52,7 @@ public class LogInController implements Initializable {
         users.setPassword(textFieldPassword1.getText());
 
         if (login.checkLogin(users)==1){
+
             Dialog.successful("Acceso concedido","Su solicitud de acceso al sistema",Dialog.ACCESS_GRANTED());
         }
 
@@ -79,6 +83,11 @@ public class LogInController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @FXML
+    void signInAction() {
+        new ChangeScene(getClass().getResource("../view/SignIn.fxml"),buttonSignIn);
     }
 
     public static void addBlur() {

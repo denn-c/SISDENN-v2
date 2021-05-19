@@ -26,6 +26,10 @@
     -fx-background-radius: 25 25 0 0;
 }
 
+.font-family60 {
+    -fx-font-family: 'Baloo Thambi 2 Bold';
+    -fx-font-size: 60;
+}
 .font-family40 {
     -fx-font-family: 'Baloo Thambi 2 Bold';
     -fx-font-size: 40;
@@ -60,13 +64,14 @@
 
 /*root*/
 
-.text-area .scroll-pane .viewport,
-.text-area .scroll-pane .content{
-    -fx-background-color: transparent;
-}
 
 .text-area .scroll-pane {
     -fx-background-radius: 15;
+}
+
+.text-area .scroll-pane .viewport,
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
 }
 
 .scroll-bar:horizontal,

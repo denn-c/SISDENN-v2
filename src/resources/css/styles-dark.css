@@ -28,7 +28,7 @@
 }
 
 .innershadow-shadow-input {
-    -fx-effect: innershadow(three-pass-box,-fx-shadow, 10, 0.0, 2, 2);
+    -fx-effect: innershadow(three-pass-box, -fx-shadow, 10, 0.0, 2, 2);
 }
 
 .innershadow-light-input {
@@ -81,17 +81,47 @@
     -fx-text-fill: -fx-text;
 }
 
-/*root*/
-
 .text-area .scroll-pane {
     -fx-background-color: -fx-main;
 }
+
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
+
     -fx-background-radius: 2.0em;
     -fx-effect: dropshadow(three-pass-box, -fx-light, 5, 0.0, -2, -2);
     -fx-border-color: -fx-shadow;
     -fx-border-style: hidden solid solid hidden;
     -fx-border-width: 1px;
     -fx-border-radius: 2.0em;
+}
+
+.combo-box-base .text {
+    -fx-fill: -fx-text;
+}
+
+.combo-box .arrow-button .arrow {
+    -fx-background-color: -fx-button;
+}
+
+.combo-box .list-view {
+    -fx-background-color: -fx-main;
+    -fx-text-fill: -fx-text;
+    -fx-background-radius: 10;
+    -fx-padding: 2;
+    -fx-translate-y: 8;
+    -fx-effect: dropshadow(three-pass-box, -fx-light, 10, 0, 0, 0);
+}
+
+.combo-box-popup .list-view .list-cell{
+    -fx-background-color: transparent;
+}
+
+.combo-box-popup .list-view .list-cell:filled {
+    -fx-background-color: transparent;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color: -fx-prompt;
+    -fx-background-radius: 10;
 }

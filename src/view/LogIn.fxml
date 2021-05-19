@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<FlowPane fx:id="flowPaneRoot" alignment="CENTER" columnHalignment="CENTER" hgap="10" minHeight="600.0" minWidth="450.0" prefHeight="680.0" prefWidth="1100.0" styleClass="background-root" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogInController">
+<FlowPane fx:id="flowPaneRoot" alignment="CENTER" columnHalignment="CENTER" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="450.0" prefHeight="680.0" prefWidth="1100.0" styleClass="background-root" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogInController">
    <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="450.0">
       <styleClass>
          <String fx:value="background-root" />
@@ -37,14 +37,22 @@
                   <String fx:value="background-root" />
                   <String fx:value="radius-100percent" />
                </styleClass>
-               <FlowPane alignment="CENTER" prefHeight="170.0" prefWidth="170.0">
+               <FlowPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="170.0">
                   <styleClass>
                      <String fx:value="background-root" />
                      <String fx:value="radius-100percent" />
+                     <String fx:value="dropshadow-light-button" />
                   </styleClass>
-                  <ImageView fitHeight="170.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../resources/images/login/logo.png" />
-                  </ImageView>
+                  <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="170.0">
+                     <styleClass>
+                        <String fx:value="dropshadow-shadow-button" />
+                        <String fx:value="background-root" />
+                        <String fx:value="radius-100percent" />
+                     </styleClass>
+                     <ImageView fitHeight="170.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../resources/images/login/logo.png" />
+                     </ImageView>
+                  </FlowPane>
                </FlowPane>
             </FlowPane>
             <Label text="COMPUTECNIO">
@@ -182,7 +190,7 @@
                   <String fx:value="font-family13" />
                </styleClass>
             </Label>
-            <Button mnemonicParsing="false" text="regístrate">
+            <Button fx:id="buttonSignIn" mnemonicParsing="false" onAction="#signInAction" text="regístrate">
                <styleClass>
                   <String fx:value="background-root" />
                   <String fx:value="font-family13" />

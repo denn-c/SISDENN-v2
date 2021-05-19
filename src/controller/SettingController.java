@@ -20,13 +20,14 @@ public class SettingController {
             darkLight.setText("Modo Oscuro");
             LogInController.lightTheme();
             Dialog.setStyle("/resources/css/styles-light.css");
+            SignInController.setStyle("/resources/css/styles-light.css");
 
 
         } else {
             darkLight.setText("Modo Claro");
             LogInController.darkTheme();
             Dialog.setStyle("/resources/css/styles-dark.css");
-
+            SignInController.setStyle("/resources/css/styles-dark.css");
         }
     }
 

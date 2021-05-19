@@ -1,7 +1,5 @@
 package model;
 
-import controller.Dialog;
-
 import java.sql.*;
 
 public class Login {
