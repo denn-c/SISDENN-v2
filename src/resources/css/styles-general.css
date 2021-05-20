@@ -62,9 +62,6 @@
     -fx-background-color: transparent;
 }
 
-/*root*/
-
-
 .text-area .scroll-pane {
     -fx-background-radius: 15;
 }

@@ -10,7 +10,7 @@ public class LogIn {
 
 
     public int checkLogin(Users users) {
-        String sql = "SELECT idUse, idUserType, nameLastName, email, userName, password FROM user where userName = ?";
+        String sql = "SELECT idUser, idUserType, nameLastName, email, userName, password FROM user where userName = ?";
 
         if (connection == null) return 0;
         else {
@@ -29,7 +29,7 @@ public class LogIn {
                 }
                 return -1;
             } catch (SQLException e) {
-                Dialog.error("Error de consulta","Ocurrió un error al ejecutar la consulta a la base de datos",e.getMessage(),Dialog.DATABASE_NOT_CONNECTED());
+                Dialog.error("Error de consulta MySQL","Ocurrió un error al ejecutar la consulta a la base de datos",e.getMessage(),Dialog.SQL());
                 return 0;
             }
         }

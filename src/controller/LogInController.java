@@ -9,11 +9,9 @@ import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
-import model.ChangeScene;
-import model.LogIn;
-import model.ShowPassword;
-import model.Users;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,13 +29,19 @@ public class LogInController implements Initializable {
     private TextField textFieldUserName;
 
     @FXML
+    private SVGPath svgPathErrorUser;
+
+    @FXML
     private ToggleButton buttonShowPassword;
 
     @FXML
     private TextField textFieldPassword2;
 
     @FXML
-    private PasswordField textFieldPassword1;
+    private PasswordField passwordFieldPassword1;
+
+    @FXML
+    private SVGPath svgPathErrorPassword;
 
     @FXML
     private Button buttonSignIn;
@@ -49,14 +53,29 @@ public class LogInController implements Initializable {
 
     @FXML
     void showPasswordAction() {
-        ShowPassword showPassword = new ShowPassword(textFieldPassword1, textFieldPassword2, buttonShowPassword);
+        ShowPassword showPassword = new ShowPassword(passwordFieldPassword1, textFieldPassword2, buttonShowPassword);
         showPassword.show();
     }
 
     @FXML
     void syncUpPassword(KeyEvent event) {
-        ShowPassword showPassword = new ShowPassword(textFieldPassword1, textFieldPassword2, event);
+        ShowPassword showPassword = new ShowPassword(passwordFieldPassword1, textFieldPassword2, event);
         showPassword.syncUpPassword();
+    }
+
+    @FXML
+    void keyPressedAction(KeyEvent event) {
+
+        if (event.getSource().equals(textFieldUserName)) {
+            if (svgPathErrorUser.isVisible()) {
+                hideError(textFieldUserName, svgPathErrorUser);
+            }
+        } else if (event.getSource().equals(passwordFieldPassword1) || event.getSource().equals(textFieldPassword2)) {
+            if (svgPathErrorPassword.isVisible()) {
+                hideError(textFieldPassword2, svgPathErrorPassword);
+                hideError(passwordFieldPassword1);
+            }
+        }
     }
 
     @FXML
@@ -64,22 +83,27 @@ public class LogInController implements Initializable {
         LogIn login = new LogIn();
         Users users = new Users();
 
+        String password = EncryptPassword.sha1(passwordFieldPassword1.getText());
         users.setUserName(textFieldUserName.getText());
-        users.setPassword(textFieldPassword1.getText());
+        users.setPassword(password);
+        if (textFieldUserName.getText().isEmpty()) {
+            sowError(textFieldUserName, svgPathErrorUser);
+        } else if (passwordFieldPassword1.getText().isEmpty()) {
 
-        if (login.checkLogin(users)==1){
-
-            Dialog.successful("Acceso concedido","Su solicitud de acceso al sistema",Dialog.ACCESS_GRANTED());
-        }
-
-        else if (login.checkLogin(users)== -1) {
-            Dialog.error("Acceso denegado","Los datos que ingresaste no son correctos, o usted no esta registrado","Verifique que su nombre de usuario y contraseña sean  los correctors o usted no esta registrado",Dialog.ACCESS_DENIED());
+            sowError(textFieldPassword2, svgPathErrorPassword);
+            sowError(passwordFieldPassword1);
+        } else {
+            if (login.checkLogin(users) == 1) {
+                Dialog.successful("Acceso concedido", "Su solicitud de acceso al sistema a sido aprobada", Dialog.ACCESS_GRANTED());
+            } else if (login.checkLogin(users) == -1) {
+                Dialog.error("Acceso denegado", "Los datos que ingresaste no son correctos, o usted no esta registrado", "Verifique que su nombre de usuario y contraseña sean  los correctors o usted no esta registrado", Dialog.ACCESS_DENIED());
+            }
         }
     }
 
     @FXML
     void signInAction() {
-        new ChangeScene(getClass().getResource("../view/SignIn.fxml"),buttonSignIn);
+        new ChangeScene(getClass().getResource("../view/SignIn.fxml"), buttonSignIn);
     }
 
     @FXML
@@ -94,6 +118,29 @@ public class LogInController implements Initializable {
         }
     }
 
+    private void sowError(TextField textField, SVGPath svgPath) {
+        textField.getStylesheets().add("resources/css/styles-validate.css");
+        textField.setPromptText("Por favor rellene este campo");
+        textField.requestFocus();
+        svgPath.setVisible(true);
+    }
+
+    private void sowError(PasswordField passwordField) {
+        passwordField.getStylesheets().add("resources/css/styles-validate.css");
+        passwordField.setPromptText("Por favor rellene este campo");
+        passwordField.requestFocus();
+    }
+
+    private void hideError(TextField textField, SVGPath svgPath) {
+        textField.getStylesheets().clear();
+        textField.setPromptText("Usuario");
+        svgPath.setVisible(false);
+    }
+
+    private void hideError(PasswordField passwordField) {
+        passwordField.getStylesheets().clear();
+        passwordField.setPromptText("Contraseña");
+    }
 
     public static void addBlur() {
         GaussianBlur blurEffect = new GaussianBlur(20);

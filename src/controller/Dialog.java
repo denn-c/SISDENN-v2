@@ -77,6 +77,7 @@ public class Dialog implements Initializable {
     @FXML
     public void closeAction() {
         LogInController.removeBlur();
+        SignInController.removeBlur();
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
@@ -112,9 +113,9 @@ public class Dialog implements Initializable {
     private static void loadDialog() {
         try {
 
-//            Stage primaryStage = (Stage) LogInController.flowPaneRootS.getScene().getWindow();
-//            double centerXPosition = (primaryStage.getX() + (primaryStage.getWidth()) / 2);
-//            double centerYPosition = (primaryStage.getY() + (primaryStage.getHeight()) / 2);
+/*          .Stage primaryStage = (Stage) LogInController.flowPaneRootS.getScene().getWindow();
+            double centerXPosition = (primaryStage.getX() + (primaryStage.getWidth()) / 2);
+            double centerYPosition = (primaryStage.getY() + (primaryStage.getHeight()) / 2);*/
 
             URL location = Dialog.class.getResource("../view/Dialog.fxml");
             Parent root = FXMLLoader.load(Objects.requireNonNull(location));
@@ -124,8 +125,8 @@ public class Dialog implements Initializable {
             scene.setFill(Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.initModality(Modality.APPLICATION_MODAL);
-//            stage.setX(centerXPosition - 210);
-//            stage.setY(centerYPosition - 150);
+    /*.      stage.setX(centerXPosition - 210);
+            stage.setY(centerYPosition - 150);*/
             stage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -144,10 +145,15 @@ public class Dialog implements Initializable {
         return "M15 3.0019531C10.758 3.0019531 9 5.7229531 9 9.0019531C9 10.105953 9.5273437 11.214844 9.5273438 11.214844C9.3153438 11.336844 8.9666875 11.724109 9.0546875 12.412109C9.2186875 13.695109 9.7749062 14.021828 10.128906 14.048828C10.263906 15.245828 11.55 16.777 12 17L12 19C11 22 3 20 3 27L14.947266 27C14.346266 25.794 14 24.439 14 23C14 19.186 16.376563 15.933047 19.726562 14.623047C19.795562 14.427047 19.850094 14.233828 19.871094 14.048828C20.225094 14.021828 20.781312 13.695109 20.945312 12.412109C21.033313 11.723109 20.684656 11.336844 20.472656 11.214844C20.472656 11.214844 21 10.212953 21 9.0019531C21 6.5739531 20.047 4.5019531 18 4.5019531C18 4.5019531 17.289 3.0019531 15 3.0019531 z M 23 16C19.134 16 16 19.134 16 23C16 26.866 19.134 30 23 30C26.866 30 30 26.866 30 23C30 19.134 26.866 16 23 16 z M 26 20C26.25575 20 26.511531 20.097469 26.707031 20.292969C27.098031 20.683969 27.098031 21.316031 26.707031 21.707031L22.707031 25.707031C22.512031 25.902031 22.256 26 22 26C21.744 26 21.487969 25.902031 21.292969 25.707031L19.292969 23.707031C18.901969 23.316031 18.901969 22.683969 19.292969 22.292969C19.683969 21.901969 20.316031 21.901969 20.707031 22.292969L22 23.585938L25.292969 20.292969C25.488469 20.097469 25.74425 20 26 20 z";
     }
 
+    public static String SQL(){
+        return "M6 4C4.895 4 4 4.895 4 6L4 24C4 25.105 4.895 26 6 26L24 26C25.105 26 26 25.105 26 24L26 6C26 4.895 25.105 4 24 4L6 4 z M 15.121094 10.888672C16.605094 10.888672 17.183594 12.515922 17.183594 14.419922C17.183594 16.253922 16.762547 17.326547 16.060547 17.685547L16.060547 17.730469C16.519547 17.934469 17.0075 18.091047 17.4375 18.248047L17.039062 19.111328C16.464063 18.876328 15.768641 18.525672 15.306641 18.263672C15.165641 18.187672 15.063766 18.132813 15.009766 18.132812C13.725766 18.132812 12.892578 16.874047 12.892578 14.498047C12.892578 12.391047 13.694094 10.888672 15.121094 10.888672 z M 10.189453 10.908203C10.645453 10.908203 11.057094 11.044016 11.246094 11.166016L11.039062 12.128906C10.847062 12.002906 10.546062 11.886719 10.164062 11.886719C9.5270625 11.886719 9.2265625 12.320141 9.2265625 12.744141C9.2265625 13.293141 9.5075156 13.542813 10.228516 14.007812C11.127516 14.589813 11.486328 15.275156 11.486328 16.035156C11.485328 17.302156 10.573594 18.111328 9.3085938 18.111328C8.7765937 18.111328 8.2463906 17.962406 8.0253906 17.816406L8.2148438 16.851562C8.4788437 17.010562 8.9375469 17.134766 9.3105469 17.134766C10.000547 17.134766 10.378906 16.730344 10.378906 16.152344C10.378906 15.580344 10.030172 15.258375 9.4511719 14.859375C8.6691719 14.357375 8.1171875 13.653672 8.1171875 12.888672C8.1171875 11.782672 8.8684531 10.908203 10.189453 10.908203 z M 19 10.972656L20.119141 10.972656L20.119141 17.099609L22.011719 17.099609L22.011719 18.048828L19 18.048828L19 10.972656 z M 15.058594 11.865234C14.334594 11.865234 14.050641 13.145328 14.056641 14.486328C14.044641 15.904328 14.305594 17.15625 15.058594 17.15625C15.778594 17.15625 16.019531 15.90575 16.019531 14.46875C16.019531 13.13575 15.798594 11.865234 15.058594 11.865234 z";
+    }
+
     public static void error(String title_error, String message_error, String message_details, String icon) {
 
         showDetailsButtonVisible = true;
         LogInController.addBlur();
+        SignInController.addBlur();
         styleTypeDialog = "resources/css/styles-error.css";
         IconTypeContent = icon;
         title = title_error;
@@ -159,6 +165,7 @@ public class Dialog implements Initializable {
     public static void successful(String title_error, String message_successful, String icon) {
         showDetailsButtonVisible = false;
         LogInController.addBlur();
+        SignInController.addBlur();
         title = title_error;
         styleTypeDialog = "resources/css/styles-successful.css";
         IconTypeContent = icon;

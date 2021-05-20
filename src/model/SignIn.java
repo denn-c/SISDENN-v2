@@ -23,7 +23,7 @@ public class SignIn {
                 user_type.add(resultSet.getString(2));
             }
         } catch (SQLException e) {
-            Dialog.error("Error de consulta", "Ocurrió un error al cargar los tipos de usuario de la base de datos", e.getMessage(), Dialog.DATABASE_NOT_CONNECTED());
+            Dialog.error("Error de consulta MySQL", "Ocurrió un error al cargar los tipos de usuario de la base de datos", e.getMessage(), Dialog.SQL());
         }
         return user_type;
     }
@@ -41,7 +41,7 @@ public class SignIn {
             preparedStatement.execute();
             return true;
         } catch (SQLException e) {
-            Dialog.error("Registro fallido","Su solicitud de registro a sido denegado",e.getMessage(),Dialog.ACCESS_GRANTED());
+            Dialog.error("Error de registro MySQL", "Ocurrió un error al ingresar los datos de usuario de la base de datos", e.getMessage(), Dialog.SQL());
         }
         return false;
     }
