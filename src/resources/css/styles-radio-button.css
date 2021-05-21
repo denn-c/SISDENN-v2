@@ -1,8 +1,0 @@
-*{
-    -fx-main:#0AFFEF;
-}
-
-.radio-button-style-selected{
-    -fx-background-color: -fx-button;
-    -fx-background-radius: 100;
-}

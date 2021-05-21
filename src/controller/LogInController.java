@@ -119,6 +119,7 @@ public class LogInController implements Initializable {
             scene.setFill(Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.initModality(Modality.APPLICATION_MODAL);
+            addBlur();
             stage.show();
         } catch (IOException ignored) {
 

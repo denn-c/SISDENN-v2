@@ -153,3 +153,27 @@
     -fx-padding: 2 4;
     -fx-border-radius: 10;
 }
+/*radio*/
+.radio-button .radio {
+    -fx-background-color: transparent;
+    -fx-background-image: null;
+    -fx-padding: 1 5 5 2;
+    -fx-border-color: -fx-main;
+    -fx-border-width: 2;
+    -fx-border-style: dotted;
+    -fx-border-radius: 100;
+
+}
+.radio-button:focused .radio {
+    -fx-border-color: -fx-prompt;
+}
+
+
+.radio-button:selected .radio .dot{
+    -fx-background-color: -fx-button;
+
+}
+.radio-button .dot {
+    -fx-background-radius: 100;
+    -fx-padding: 5;
+}

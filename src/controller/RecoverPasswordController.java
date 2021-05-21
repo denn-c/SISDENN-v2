@@ -2,15 +2,24 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
-public class RecoverPasswordController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class RecoverPasswordController implements Initializable {
 
     @FXML
-    private FlowPane flowPaneRadioButton;
+    private Button buttonCancel;
 
+    @FXML
+    private ImageView imageViewProfilePicture;
 
     @FXML
     private RadioButton radioButtonEmail;
@@ -21,13 +30,33 @@ public class RecoverPasswordController {
     @FXML
     private RadioButton radioButtonPhone;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        Rectangle rectangle = new Rectangle(80,100);
+        rectangle.setArcHeight(20);
+        rectangle.setArcWidth(20);
+        imageViewProfilePicture.setClip(rectangle);
+    }
+
+    @FXML
+    void buttonCancelAction() {
+        Stage stage = (Stage) buttonCancel.getScene().getWindow();
+        LogInController.removeBlur();
+        stage.close();
+    }
+
     @FXML
     void radioButtonAction(ActionEvent event) {
-        if (radioButtonEmail.isSelected()){
-            flowPaneRadioButton.getStylesheets().add("resources/css/styles-radio-button.css");
-        }else {
-            flowPaneRadioButton.getStylesheets().clear();
+        if(event.getSource().equals(radioButtonEmail)){
+            System.out.println("Por email");
+        }else if(event.getSource().equals(radioButtonPhone)){
+            System.out.println("por mensaje");
         }
+    }
+
+    @FXML
+    void buttonContinueAction() {
     }
 
 }
