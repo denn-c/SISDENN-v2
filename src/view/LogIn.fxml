@@ -77,32 +77,26 @@
                <String fx:value="background-root" />
                <String fx:value="radius-100percent" />
             </styleClass>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        prefHeight="50.0" prefWidth="380.0">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="380.0">
                <styleClass>
-                  <String fx:value="innershadow-shadow-input"/>
-                  <String fx:value="background-root"/>
-                  <String fx:value="radius-100percent"/>
+                  <String fx:value="innershadow-shadow-input" />
+                  <String fx:value="background-root" />
+                  <String fx:value="radius-100percent" />
                </styleClass>
-               <SVGPath
-                       content="M15 3C11.686 3 9 5.686 9 9L9 10C9 13.314 11.686 16 15 16C18.314 16 21 13.314 21 10L21 9C21 5.686 18.314 3 15 3 z M 11.097656 19.552734C8.1626562 20.319734 5.3940469 21.763797 4.3730469 23.091797C3.4590469 24.279797 4.329125 26 5.828125 26L24.169922 26C25.668922 26 26.539 24.278844 25.625 23.089844C24.604 21.761844 21.836344 20.319734 18.902344 19.552734C17.852344 20.453734 16.491 21 15 21C13.508 21 12.147656 20.452734 11.097656 19.552734 z"
-                       fill="WHITE" layoutX="10.0" layoutY="11.0">
+               <SVGPath content="M15 3C11.686 3 9 5.686 9 9L9 10C9 13.314 11.686 16 15 16C18.314 16 21 13.314 21 10L21 9C21 5.686 18.314 3 15 3 z M 11.097656 19.552734C8.1626562 20.319734 5.3940469 21.763797 4.3730469 23.091797C3.4590469 24.279797 4.329125 26 5.828125 26L24.169922 26C25.668922 26 26.539 24.278844 25.625 23.089844C24.604 21.761844 21.836344 20.319734 18.902344 19.552734C17.852344 20.453734 16.491 21 15 21C13.508 21 12.147656 20.452734 11.097656 19.552734 z" fill="WHITE" layoutX="10.0" layoutY="11.0">
                   <styleClass>
-                     <String fx:value="icon-fill"/>
+                     <String fx:value="icon-fill" />
                   </styleClass>
                </SVGPath>
-               <TextField fx:id="textFieldUserName" layoutX="30.0" layoutY="9.0" maxHeight="33.0" maxWidth="341.0"
-                          onKeyPressed="#keyPressedAction" prefHeight="33.0" prefWidth="341.0" promptText="Usuario">
+               <TextField fx:id="textFieldUserName" layoutX="30.0" layoutY="9.0" maxHeight="33.0" maxWidth="341.0" onKeyPressed="#keyPressedAction" prefHeight="33.0" prefWidth="341.0" promptText="Usuario">
                   <styleClass>
-                     <String fx:value="background-transparent"/>
-                     <String fx:value="input-style"/>
-                     <String fx:value="font-family15"/>
-                     <String fx:value="input-not-valid"/>
+                     <String fx:value="background-transparent" />
+                     <String fx:value="input-style" />
+                     <String fx:value="font-family15" />
+                     <String fx:value="input-not-valid" />
                   </styleClass>
                </TextField>
-               <SVGPath fx:id="svgPathErrorUser"
-                        content="M25.289063 20.132813L15.234375 2.71875C14.003906 0.589844 11.996094 0.589844 10.765625 2.71875L0.710938 20.132813C-0.519531 22.261719 0.488281 24 2.945313 24L23.054688 24C25.511719 24 26.515625 22.261719 25.289063 20.132813 Z M 11.617188 7.660156C11.980469 7.269531 12.4375 7.074219 13 7.074219C13.5625 7.074219 14.019531 7.265625 14.382813 7.652344C14.738281 8.035156 14.921875 8.519531 14.921875 9.101563C14.921875 9.597656 14.171875 13.269531 13.921875 15.9375L12.113281 15.9375C11.894531 13.269531 11.078125 9.597656 11.078125 9.101563C11.078125 8.527344 11.261719 8.046875 11.617188 7.660156 Z M 14.355469 20.355469C13.976563 20.722656 13.523438 20.910156 13 20.910156C12.476563 20.910156 12.023438 20.722656 11.644531 20.355469C11.265625 19.984375 11.078125 19.539063 11.078125 19.011719C11.078125 18.488281 11.265625 18.035156 11.644531 17.65625C12.023438 17.277344 12.476563 17.089844 13 17.089844C13.523438 17.089844 13.976563 17.277344 14.355469 17.65625C14.734375 18.035156 14.921875 18.488281 14.921875 19.011719C14.921875 19.539063 14.734375 19.984375 14.355469 20.355469Z"
-                        fill="#ff4444" layoutX="347.0" layoutY="12.0" scaleX="0.8" scaleY="0.8" visible="false"/>
+               <SVGPath fx:id="svgPathErrorUser" content="M25.289063 20.132813L15.234375 2.71875C14.003906 0.589844 11.996094 0.589844 10.765625 2.71875L0.710938 20.132813C-0.519531 22.261719 0.488281 24 2.945313 24L23.054688 24C25.511719 24 26.515625 22.261719 25.289063 20.132813 Z M 11.617188 7.660156C11.980469 7.269531 12.4375 7.074219 13 7.074219C13.5625 7.074219 14.019531 7.265625 14.382813 7.652344C14.738281 8.035156 14.921875 8.519531 14.921875 9.101563C14.921875 9.597656 14.171875 13.269531 13.921875 15.9375L12.113281 15.9375C11.894531 13.269531 11.078125 9.597656 11.078125 9.101563C11.078125 8.527344 11.261719 8.046875 11.617188 7.660156 Z M 14.355469 20.355469C13.976563 20.722656 13.523438 20.910156 13 20.910156C12.476563 20.910156 12.023438 20.722656 11.644531 20.355469C11.265625 19.984375 11.078125 19.539063 11.078125 19.011719C11.078125 18.488281 11.265625 18.035156 11.644531 17.65625C12.023438 17.277344 12.476563 17.089844 13 17.089844C13.523438 17.089844 13.976563 17.277344 14.355469 17.65625C14.734375 18.035156 14.921875 18.488281 14.921875 19.011719C14.921875 19.539063 14.734375 19.984375 14.355469 20.355469Z" fill="#ff4444" layoutX="347.0" layoutY="12.0" scaleX="0.8" scaleY="0.8" visible="false" />
             </AnchorPane>
          </FlowPane>
          <FlowPane layoutX="45.0" layoutY="299.0" maxWidth="380.0" prefHeight="50.0" prefWidth="380.0">

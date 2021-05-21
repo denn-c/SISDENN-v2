@@ -9,8 +9,11 @@ import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.*;
 
 import java.io.IOException;
@@ -109,9 +112,13 @@ public class LogInController implements Initializable {
     @FXML
     void forgotPasswordAction() {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/Setting.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/RecoverPassword.fxml")));
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            scene.setFill(Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException ignored) {
 
