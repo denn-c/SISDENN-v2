@@ -16,6 +16,9 @@ import java.util.ResourceBundle;
 public class RecoverPasswordController implements Initializable {
 
     @FXML
+    public ToggleGroup toggleGroup;
+
+    @FXML
     private Button buttonCancel;
 
     @FXML
@@ -25,18 +28,19 @@ public class RecoverPasswordController implements Initializable {
     private RadioButton radioButtonEmail;
 
     @FXML
-    private ToggleGroup toggleGroup;
-
-    @FXML
     private RadioButton radioButtonPhone;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Rectangle rectangle = new Rectangle(80,100);
+        Rectangle rectangle = new Rectangle(80, 100);
         rectangle.setArcHeight(20);
         rectangle.setArcWidth(20);
         imageViewProfilePicture.setClip(rectangle);
+        String phone = LogInController.getEmailPhone()[1];
+        phone = phone.substring(phone.length() - 2);
+        radioButtonEmail.setText(radioButtonEmail.getText() +LogInController.getEmailPhone()[0]);
+        radioButtonPhone.setText(radioButtonPhone.getText() + "*******" + phone);
     }
 
     @FXML
@@ -48,15 +52,16 @@ public class RecoverPasswordController implements Initializable {
 
     @FXML
     void radioButtonAction(ActionEvent event) {
-        if(event.getSource().equals(radioButtonEmail)){
+        if (event.getSource().equals(radioButtonEmail)) {
             System.out.println("Por email");
-        }else if(event.getSource().equals(radioButtonPhone)){
+        } else if (event.getSource().equals(radioButtonPhone)) {
             System.out.println("por mensaje");
         }
     }
 
     @FXML
     void buttonContinueAction() {
+
     }
 
 }

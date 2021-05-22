@@ -14,13 +14,13 @@ public class SignIn {
     public ObservableList<String> loadUserType() {
 
         ObservableList<String> user_type = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM user_type";
+        String sql = "SELECT name FROM user_type";
 
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                user_type.add(resultSet.getString(2));
+                user_type.add(resultSet.getString(1));
             }
         } catch (SQLException e) {
             Dialog.error("Error de consulta MySQL", "Ocurrió un error al cargar los tipos de usuario de la base de datos", e.getMessage(), Dialog.SQL());

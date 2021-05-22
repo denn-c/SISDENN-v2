@@ -24,6 +24,8 @@ import java.util.ResourceBundle;
 public class LogInController implements Initializable {
 
     public static FlowPane flowPaneRootS;
+    private static String email;
+    private static String phone;
 
     @FXML
     private FlowPane flowPaneRoot;
@@ -83,12 +85,6 @@ public class LogInController implements Initializable {
 
     @FXML
     void logInAction() {
-        LogIn login = new LogIn();
-        Users users = new Users();
-
-        String password = EncryptPassword.sha1(passwordFieldPassword1.getText());
-        users.setUserName(textFieldUserName.getText());
-        users.setPassword(password);
         if (textFieldUserName.getText().isEmpty()) {
             sowError(textFieldUserName, svgPathErrorUser);
         } else if (passwordFieldPassword1.getText().isEmpty()) {
@@ -96,6 +92,11 @@ public class LogInController implements Initializable {
             sowError(textFieldPassword2, svgPathErrorPassword);
             sowError(passwordFieldPassword1);
         } else {
+            LogIn login = new LogIn();
+            Users users = new Users();
+            String password = EncryptPassword.sha1(passwordFieldPassword1.getText());
+            users.setUserName(textFieldUserName.getText());
+            users.setPassword(password);
             if (login.checkLogin(users) == 1) {
                 Dialog.successful("Acceso concedido", "Su solicitud de acceso al sistema a sido aprobada", Dialog.ACCESS_GRANTED());
             } else if (login.checkLogin(users) == -1) {
@@ -105,25 +106,45 @@ public class LogInController implements Initializable {
     }
 
     @FXML
+    void forgotPasswordAction() {
+
+        if (textFieldUserName.getText().isEmpty()){
+            sowError(textFieldUserName,svgPathErrorUser);
+        }else {
+            Users users = new Users();
+            users.setUserName(textFieldUserName.getText());
+            RecoverPassword recoverPassword = new RecoverPassword();
+            if (recoverPassword.getUserName(users)==null){
+                Dialog.error("El usuario no existe","El usuario que ingresaste no esta registrado en el sistema","Verifique que el usuario que ingresaste se valido, caso contrario su cuenta de usuario fue eliminado por la gerencia ponte en contacto con el gerente",Dialog.ACCESS_DENIED());
+            }else{
+                email=recoverPassword.getUserName(users)[0];
+                phone=recoverPassword.getUserName(users)[1];
+                try {
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/RecoverPassword.fxml")));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    scene.setFill(Color.TRANSPARENT);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    addBlur();
+                    stage.show();
+                } catch (IOException ignored) {
+                }
+            }
+        }
+    }
+
+    @FXML
     void signInAction() {
         new ChangeScene(getClass().getResource("../view/SignIn.fxml"), buttonSignIn);
     }
 
-    @FXML
-    void forgotPasswordAction() {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/RecoverPassword.fxml")));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            scene.setFill(Color.TRANSPARENT);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            addBlur();
-            stage.show();
-        } catch (IOException ignored) {
-
-        }
+    public static String[] getEmailPhone(){
+        String[] data = new String[2];
+        data[0] = email;
+        data[1] = phone;
+        return data;
     }
 
     private void sowError(TextField textField, SVGPath svgPath) {
