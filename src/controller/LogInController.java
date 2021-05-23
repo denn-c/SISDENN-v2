@@ -1,31 +1,22 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import model.*;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
 
     public static FlowPane flowPaneRootS;
-    private static String email;
-    private static String phone;
+    private static String[] userdata = new String[2];
+    private static String styleTheme;
 
     @FXML
     private FlowPane flowPaneRoot;
@@ -53,7 +44,13 @@ public class LogInController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        if (styleTheme == null) {
+            styleTheme = "resources/css/styles-dark.css";
+        }
+        flowPaneRoot.getStylesheets().add(styleTheme);
         flowPaneRootS = flowPaneRoot;
+
     }
 
     @FXML
@@ -69,7 +66,7 @@ public class LogInController implements Initializable {
     }
 
     @FXML
-    void keyPressedAction(KeyEvent event) {
+    void hideErrorKeyPressedAction(KeyEvent event) {
 
         if (event.getSource().equals(textFieldUserName)) {
             if (svgPathErrorUser.isVisible()) {
@@ -88,7 +85,6 @@ public class LogInController implements Initializable {
         if (textFieldUserName.getText().isEmpty()) {
             sowError(textFieldUserName, svgPathErrorUser);
         } else if (passwordFieldPassword1.getText().isEmpty()) {
-
             sowError(textFieldPassword2, svgPathErrorPassword);
             sowError(passwordFieldPassword1);
         } else {
@@ -98,7 +94,7 @@ public class LogInController implements Initializable {
             users.setUserName(textFieldUserName.getText());
             users.setPassword(password);
             if (login.checkLogin(users) == 1) {
-                Dialog.successful("Acceso concedido", "Su solicitud de acceso al sistema a sido aprobada", Dialog.ACCESS_GRANTED());
+                new ChangeScene(getClass().getResource("../view/System.fxml"), buttonSignIn);
             } else if (login.checkLogin(users) == -1) {
                 Dialog.error("Acceso denegado", "Los datos que ingresaste no son correctos, o usted no esta registrado", "Verifique que su nombre de usuario y contraseña sean  los correctors o usted no esta registrado", Dialog.ACCESS_DENIED());
             }
@@ -108,29 +104,18 @@ public class LogInController implements Initializable {
     @FXML
     void forgotPasswordAction() {
 
-        if (textFieldUserName.getText().isEmpty()){
-            sowError(textFieldUserName,svgPathErrorUser);
-        }else {
+        if (textFieldUserName.getText().isEmpty()) {
+            sowError(textFieldUserName, svgPathErrorUser);
+        } else {
             Users users = new Users();
             users.setUserName(textFieldUserName.getText());
             RecoverPassword recoverPassword = new RecoverPassword();
-            if (recoverPassword.getUserName(users)==null){
-                Dialog.error("El usuario no existe","El usuario que ingresaste no esta registrado en el sistema","Verifique que el usuario que ingresaste se valido, caso contrario su cuenta de usuario fue eliminado por la gerencia ponte en contacto con el gerente",Dialog.ACCESS_DENIED());
-            }else{
-                email=recoverPassword.getUserName(users)[0];
-                phone=recoverPassword.getUserName(users)[1];
-                try {
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/RecoverPassword.fxml")));
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    scene.setFill(Color.TRANSPARENT);
-                    stage.initStyle(StageStyle.TRANSPARENT);
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    addBlur();
-                    stage.show();
-                } catch (IOException ignored) {
-                }
+            if (recoverPassword.checkUser(users) == null) {
+                Dialog.error("El usuario no existe", "El usuario que ingresaste no esta registrado en el sistema", "Verifique que el usuario que ingresaste se valido, caso contrario su cuenta de usuario fue eliminado por la gerencia ponte en contacto con el gerente", Dialog.ACCESS_DENIED());
+            } else {
+                userdata = recoverPassword.getUserdata();
+                new ChangeScene(getClass().getResource("../view/RecoverPassword.fxml"));
+                addBlur();
             }
         }
     }
@@ -140,11 +125,8 @@ public class LogInController implements Initializable {
         new ChangeScene(getClass().getResource("../view/SignIn.fxml"), buttonSignIn);
     }
 
-    public static String[] getEmailPhone(){
-        String[] data = new String[2];
-        data[0] = email;
-        data[1] = phone;
-        return data;
+    public static String[] getUserdata() {
+        return userdata;
     }
 
     private void sowError(TextField textField, SVGPath svgPath) {
@@ -180,15 +162,7 @@ public class LogInController implements Initializable {
         flowPaneRootS.setEffect(null);
     }
 
-    public static void lightTheme() {
-        flowPaneRootS.getStylesheets().clear();
-        flowPaneRootS.getStylesheets().add("/resources/css/styles-light.css");
-        flowPaneRootS.getStylesheets().add("/resources/css/styles-general.css");
-    }
-
-    public static void darkTheme() {
-        flowPaneRootS.getStylesheets().clear();
-        flowPaneRootS.getStylesheets().add("/resources/css/styles-dark.css");
-        flowPaneRootS.getStylesheets().add("/resources/css/styles-general.css");
+    public static void setStyle(String style) {
+        styleTheme = style;
     }
 }

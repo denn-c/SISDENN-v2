@@ -11,10 +11,9 @@ public class RecoverPassword {
     DataBaseConnection dataBaseConnection = new DataBaseConnection();
     Connection connection = dataBaseConnection.getConnection();
 
+    String[] userdata = new String[2];
 
-    public String[] getUserName(Users users) {
-
-        String[] data = new String[2];
+    public String checkUser(Users users) {
         String sql = "SELECT userName, email, phone FROM user WHERE userName =?";
 
         try {
@@ -22,14 +21,18 @@ public class RecoverPassword {
             preparedStatement.setString(1, users.getUserName());
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                data[0] = resultSet.getString(2);
-                data[1] = String.valueOf(resultSet.getInt(3));
-                return data;
+                userdata[0] = resultSet.getString(1);
+                userdata[1] = resultSet.getString(2);
+                return resultSet.getString(1);
             }
         } catch (SQLException e) {
             Dialog.error("Error de consulta MySQL", "Ocurrió un error al extraer el correo de la base de datos", e.getMessage(), Dialog.SQL());
             return null;
         }
         return null;
+    }
+
+    public String[] getUserdata() {
+        return userdata;
     }
 }

@@ -2,10 +2,7 @@ package controller;
 
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -13,16 +10,12 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import model.ChangeScene;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Dialog implements Initializable {
@@ -74,6 +67,20 @@ public class Dialog implements Initializable {
     @FXML
     private Label labelTitle;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        labelMessage.setText(message);
+        textAreaDetails.setText(details);
+        if (styleTheme == null) {
+            styleTheme = "resources/css/styles-dark.css";
+        }
+        flowPaneRoot.getStylesheets().add(styleTheme);
+        flowPaneRoot.getStylesheets().add(styleTypeDialog);
+        showDetailsContainer.setVisible(showDetailsButtonVisible);
+        svgPathIcon.setContent(IconTypeContent);
+        labelTitle.setText(title);
+    }
+
     @FXML
     public void closeAction() {
         LogInController.removeBlur();
@@ -110,12 +117,12 @@ public class Dialog implements Initializable {
 
     }
 
-    private static void loadDialog() {
+   /*TODO private static void loadDialog() {
         try {
 
-/*          .Stage primaryStage = (Stage) LogInController.flowPaneRootS.getScene().getWindow();
+            Stage primaryStage = (Stage) LogInController.flowPaneRootS.getScene().getWindow();
             double centerXPosition = (primaryStage.getX() + (primaryStage.getWidth()) / 2);
-            double centerYPosition = (primaryStage.getY() + (primaryStage.getHeight()) / 2);*/
+            double centerYPosition = (primaryStage.getY() + (primaryStage.getHeight()) / 2);
 
             URL location = Dialog.class.getResource("../view/Dialog.fxml");
             Parent root = FXMLLoader.load(Objects.requireNonNull(location));
@@ -125,13 +132,13 @@ public class Dialog implements Initializable {
             scene.setFill(Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.initModality(Modality.APPLICATION_MODAL);
-    /*.      stage.setX(centerXPosition - 210);
-            stage.setY(centerYPosition - 150);*/
+            stage.setX(centerXPosition - 210);
+            stage.setY(centerYPosition - 150);
             stage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
     public static String DATABASE_NOT_CONNECTED() {
         return "M10.5 0.1875C4.804688 0.1875 0.1875 2.34375 0.1875 5C0.1875 7.65625 4.804688 9.8125 10.5 9.8125C16.195313 9.8125 20.8125 7.65625 20.8125 5C20.8125 2.34375 16.195313 0.1875 10.5 0.1875 Z M 0.1875 6.28125L0.1875 10C0.1875 12.660156 4.804688 14.8125 10.5 14.8125C16.195313 14.8125 20.8125 12.660156 20.8125 10L20.8125 6.28125C20.8125 8.941406 16.195313 11.09375 10.5 11.09375C4.804688 11.09375 0.1875 8.941406 0.1875 6.28125 Z M 0.1875 11.28125L0.1875 15C0.1875 17.660156 4.804688 19.8125 10.5 19.8125C12.070313 19.8125 13.546875 19.636719 14.875 19.34375C14.609375 18.96875 14.46875 18.535156 14.46875 18.0625C14.46875 17.460938 14.703125 16.886719 15.125 16.46875L16.375 15.25C14.710938 15.789063 12.683594 16.09375 10.5 16.09375C4.804688 16.09375 0.1875 13.941406 0.1875 11.28125 Z M 20.8125 11.28125C20.8125 12.511719 19.816406 13.617188 18.1875 14.46875C18.742188 14.5 19.265625 14.734375 19.65625 15.125L20.5625 16.03125C20.71875 15.695313 20.8125 15.355469 20.8125 15 Z M 18.0625 16.0625C17.898438 16.0625 17.75 16.125 17.625 16.25L16.25 17.625C16 17.871094 16 18.25 16.25 18.5L18.75 21L16.25 23.5C16 23.746094 16 24.125 16.25 24.375L17.625 25.75C17.871094 26 18.25 26 18.5 25.75L21 23.25L23.5 25.75C23.746094 26 24.125 26 24.375 25.75L25.75 24.375C26 24.125 26 23.746094 25.75 23.5L23.25 21L25.75 18.5C26 18.253906 26 17.871094 25.75 17.625L24.375 16.25C24.125 16 23.746094 16 23.5 16.25L21 18.75L18.5 16.25C18.375 16.125 18.226563 16.0625 18.0625 16.0625 Z M 0.1875 16.28125L0.1875 20C0.1875 22.660156 4.804688 24.8125 10.5 24.8125C11.929688 24.8125 13.292969 24.683594 14.53125 24.4375C14.492188 24.277344 14.46875 24.105469 14.46875 23.9375C14.46875 23.335938 14.703125 22.761719 15.125 22.34375L16.46875 21L15.875 20.375C14.3125 20.820313 12.464844 21.09375 10.5 21.09375C4.804688 21.09375 0.1875 18.941406 0.1875 16.28125Z";
@@ -159,7 +166,7 @@ public class Dialog implements Initializable {
         title = title_error;
         message = message_error;
         details = message_details;
-        loadDialog();
+        new ChangeScene(Dialog.class.getResource("../view/Dialog.fxml"));
     }
 
     public static void successful(String title_error, String message_successful, String icon) {
@@ -170,24 +177,11 @@ public class Dialog implements Initializable {
         styleTypeDialog = "resources/css/styles-successful.css";
         IconTypeContent = icon;
         message = message_successful;
-        loadDialog();
+        new ChangeScene(Dialog.class.getResource("../view/Dialog.fxml"));
     }
 
     public static void setStyle(String styles) {
         styleTheme = styles;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        labelMessage.setText(message);
-        textAreaDetails.setText(details);
-        if (styleTheme == null) {
-            styleTheme = "resources/css/styles-dark.css";
-        }
-        flowPaneRoot.getStylesheets().add(styleTheme);
-        flowPaneRoot.getStylesheets().add(styleTypeDialog);
-        showDetailsContainer.setVisible(showDetailsButtonVisible);
-        svgPathIcon.setContent(IconTypeContent);
-        labelTitle.setText(title);
-    }
 }

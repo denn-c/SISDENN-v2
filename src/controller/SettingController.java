@@ -18,16 +18,18 @@ public class SettingController {
 
         if (darkLight.isSelected()) {
             darkLight.setText("Modo Oscuro");
-            LogInController.lightTheme();
             Dialog.setStyle("/resources/css/styles-light.css");
             SignInController.setStyle("/resources/css/styles-light.css");
+            LogInController.setStyle("/resources/css/styles-light.css");
+            RecoverPasswordController.setStyle("/resources/css/styles-light.css");
 
 
         } else {
             darkLight.setText("Modo Claro");
-            LogInController.darkTheme();
             Dialog.setStyle("/resources/css/styles-dark.css");
             SignInController.setStyle("/resources/css/styles-dark.css");
+            LogInController.setStyle("/resources/css/styles-dark.css");
+            RecoverPasswordController.setStyle("/resources/css/styles-dark.css");
         }
     }
 

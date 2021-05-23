@@ -5,6 +5,7 @@
     -fx-text: #66727C;
     -fx-button: #39EE70;
     -fx-prompt: #acacac;
+    -fx-hover:rgba(172, 172, 172,0.2);
 }
 
 .background-root {
@@ -153,27 +154,31 @@
     -fx-padding: 2 4;
     -fx-border-radius: 10;
 }
-/*radio*/
-.radio-button .radio {
-    -fx-background-color: transparent;
-    -fx-background-image: null;
-    -fx-padding: 1 5 5 2;
-    -fx-border-color: -fx-main;
-    -fx-border-width: 2;
-    -fx-border-style: dotted;
-    -fx-border-radius: 100;
 
+/*Menu contextual*/
+.menu-item {
+    -fx-padding: 1;
+    -fx-background: -fx-prompt;
+    -fx-background-radius: 5;
 }
-.radio-button:focused .radio {
-    -fx-border-color: -fx-prompt;
+.menu-item:disabled{
+    -fx-background-color: -fx-main;
+    -fx-opacity: 1;
+    -fx-text-fill: -fx-prompt;
+}
+.menu-item:disabled:focused,
+.menu-item:disabled:hover{
+    -fx-background-color: -fx-hover;
 }
 
-
-.radio-button:selected .radio .dot{
-    -fx-background-color: -fx-button;
-
+.menu-item .label{
+    -fx-font-size: 15;
+    -fx-text-fill: -fx-text;
 }
-.radio-button .dot {
-    -fx-background-radius: 100;
-    -fx-padding: 5;
+
+.context-menu {
+    -fx-background-color: -fx-main;
+    -fx-effect: dropshadow(three-pass-box, -fx-light, 10, 0, 0, 0);
+    -fx-padding: 4;
+    -fx-background-radius: 5;
 }
