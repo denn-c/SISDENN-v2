@@ -8,7 +8,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mysql:mysql-connector-java:8.0.22" level="project" />
+    <orderEntry type="library" name="controlsfx-8.40.11" level="project" />
     <orderEntry type="library" name="activation" level="project" />
     <orderEntry type="library" name="mail" level="project" />
+    <orderEntry type="library" name="charm-glisten-4.4.1" level="project" />
   </component>
 </module>

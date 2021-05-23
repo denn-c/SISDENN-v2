@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.SVGPath;
 import model.*;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,6 +51,9 @@ public class LogInController implements Initializable {
         }
         flowPaneRoot.getStylesheets().add(styleTheme);
         flowPaneRootS = flowPaneRoot;
+
+        String[] suggestions = {"chuyma","maria"};
+        TextFields.bindAutoCompletion(textFieldUserName,suggestions);
 
     }
 
@@ -110,12 +114,13 @@ public class LogInController implements Initializable {
             Users users = new Users();
             users.setUserName(textFieldUserName.getText());
             RecoverPassword recoverPassword = new RecoverPassword();
-            if (recoverPassword.checkUser(users) == null) {
-                Dialog.error("El usuario no existe", "El usuario que ingresaste no esta registrado en el sistema", "Verifique que el usuario que ingresaste se valido, caso contrario su cuenta de usuario fue eliminado por la gerencia ponte en contacto con el gerente", Dialog.ACCESS_DENIED());
-            } else {
+            if (recoverPassword.checkUser(users) == 1) {
                 userdata = recoverPassword.getUserdata();
                 new ChangeScene(getClass().getResource("../view/RecoverPassword.fxml"));
                 addBlur();
+
+            } else if(recoverPassword.checkUser(users) == -1){
+                Dialog.error("El usuario no existe", "El usuario que ingresaste no esta registrado en el sistema", "Verifique que el usuario que ingresaste se valido, caso contrario su cuenta de usuario fue eliminado por la gerencia ponte en contacto con el gerente", Dialog.ACCESS_DENIED());
             }
         }
     }
